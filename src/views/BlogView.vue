@@ -2,7 +2,7 @@
   <main class="container">
     <SectionHeader title="Blog" subtitle="Tu budú články o aktivitách." />
 
-    <div class="grid">
+    <div class="grid stack">
       <PostCard
         v-for="post in postsStore.posts"
         :key="post.slug"

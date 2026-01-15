@@ -1,5 +1,5 @@
 <template>
-    <article class="card">
+    <article class="surface">
         <div class="meta">
             <span class="date">{{ date }}</span>
             <span v-if="tag" class="tag">{{ tag }}</span>
@@ -26,10 +26,10 @@ export default {
 
 <style scoped>
 .card {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  padding: 16px;
-  background: #1E3A5F;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
 .meta {

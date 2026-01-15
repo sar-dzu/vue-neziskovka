@@ -23,7 +23,9 @@
 
       <label>
         <span class="text">Tag</span>
-        <input v-model="tag" />
+        <select v-model="tag">
+            <option v-for="t in tagOptions" :key="t" :value="t">{{ t }}</option>
+        </select>
       </label>
 
       <label>
@@ -61,7 +63,8 @@ export default {
       title: "",
       slug: "",
       date: "",
-      tag: "",
+      tagOptions: ["Aktivity", "Vzdelávanie", "Partnerstvá", "Výskum", "Médiá"],
+      tag: "Aktivity",
       excerpt: "",
       content: "",
       error: "",
@@ -114,7 +117,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid rgba(0,0,0,0.15);

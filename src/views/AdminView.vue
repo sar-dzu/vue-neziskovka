@@ -17,7 +17,7 @@
       <div
         v-for="post in postsStore.posts"
         :key="post.slug"
-        class="row"
+        class="row surface"
       >
         <div>
           <div class="h2">{{ post.title }}</div>
@@ -75,14 +75,10 @@ export default {
 }
 
 .row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 12px;
-  background: #1E3A5F;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
 .row-actions {
