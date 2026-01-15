@@ -1,15 +1,14 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <main class="container">
+    <h1 class="h1">About</h1>
+    <p class="text">
+      Toto je stránka o organizácii. Sem pôjde misia, hodnoty a základné info.
+    </p>
+  </main>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+<script>
+export default {
+  name: "AboutView",
+};
+</script>

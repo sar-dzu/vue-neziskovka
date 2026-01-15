@@ -1,14 +1,14 @@
 <template>
   <main class="container">
-    <h1 class="h1">Home</h1>
+    <h1 class="h1">Blog</h1>
     <p class="text">
-      Toto je domovská stránka. Sem neskôr dáme úvod + najnovšie články.
+      Tu budú články o aktivitách.
     </p>
   </main>
 </template>
 
 <script>
 export default {
-  name: "HomeView",
+  name: "BlogView",
 };
 </script>
