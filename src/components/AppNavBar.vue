@@ -1,16 +1,19 @@
 <template>
   <nav class="navbar">
-    <div class="brand">Neziskovka</div>
+  <div class="navbar-inner">
+    <RouterLink to="/" class="brand">Neziskovka</RouterLink>
 
-    <div class="links">
-      <RouterLink to="/" class="link">Home</RouterLink>
-      <RouterLink to="/projects" class="link">Projects</RouterLink>
-      <RouterLink to="/blog" class="link">Blog</RouterLink>
-      <RouterLink to="/people" class="link">People</RouterLink>
-      <RouterLink to="/about" class="link">About</RouterLink>
-      <RouterLink to="/admin" class="link">Admin</RouterLink>
+    <div class="nav-links">
+      <RouterLink to="/" class="nav-link">Home</RouterLink>
+      <RouterLink to="/projects" class="nav-link">Projects</RouterLink>
+      <RouterLink to="/blog" class="nav-link">Blog</RouterLink>
+      <RouterLink to="/people" class="nav-link">People</RouterLink>
+      <RouterLink to="/about" class="nav-link">About</RouterLink>
+      <RouterLink to="/admin" class="nav-link">Admin</RouterLink>
     </div>
-  </nav>
+  </div>
+</nav>
+
 </template>
 
 <script>
@@ -21,39 +24,52 @@ export default {
 
 <style scoped>
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: var(--primary);
+  box-shadow: var(--shadow);
+}
+
+.navbar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 16px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
-  background: #1E3A5F;
-  color: white;
+  gap: 16px;
 }
 
 .brand {
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 12px;
-}
-
-.link {
+  font-weight: 900;
+  letter-spacing: -0.02em;
   color: white;
-  text-decoration: none;
-  opacity: 0.9;
 }
 
-.link:hover {
-  opacity: 1;
-  text-decoration: underline;
+.nav-links {
+  display: flex;
+  gap: 6px;
+  align-items: center;
 }
 
-.router-link-active {
+.nav-link {
+  color: rgba(255,255,255,0.88);
+  padding: 8px 12px;
+  border-radius: 999px;
   font-weight: 700;
-  text-decoration: underline;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,0.12);
+  color: white;
+}
+
+.nav-link.router-link-active {
+  background: rgba(255,255,255,0.20);
+  color: white;
 }
 </style>

@@ -5,6 +5,8 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
 
+import vuetify from "./plugins/vuetify";
+
 import { usePostsStore } from "./stores/posts";
 import { useAuthStore } from "./stores/auth";
 
@@ -13,11 +15,12 @@ const app = createApp(App);
 const pinia = createPinia();
 app.use(pinia);
 app.use(router);
+app.use(vuetify);
 
 const postsStore = usePostsStore(pinia);
 postsStore.loadFromStorage();
 
 const authStore = useAuthStore(pinia);
-authStore.loadSession();
+authStore.loadSession?.();
 
 app.mount("#app");

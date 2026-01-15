@@ -6,11 +6,11 @@
     />
 
     <div class="admin-actions">
-      <RouterLink to="/admin/posts/new">
+      <RouterLink class="btn" to="/admin/posts/new">
         + New post
       </RouterLink>
 
-      <button class="btn-ghost" @click="logout">Logout</button>
+      <button class="btn btn-ghost" @click="logout">Logout</button>
     </div>
 
     <div class="list">
@@ -25,9 +25,9 @@
         </div>
 
         <div class="row-actions">
-            <RouterLink :to="`/blog/${post.slug}?from=admin`" class="btn-ghost">View</RouterLink>
+            <RouterLink :to="`/blog/${post.slug}?from=admin`" class="btn">View</RouterLink>
             <RouterLink :to="`/admin/posts/${post.slug}/edit`" class="btn">Edit</RouterLink>
-            <button class="btn-danger" @click="deletePost(post.slug)">Delete</button>
+            <button class="btn btn-danger" @click="deletePost(post.slug)">Delete</button>
         </div>
       </div>
     </div>

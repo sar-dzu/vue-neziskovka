@@ -1,53 +1,36 @@
 <template>
-  <main class="container">
-    <SectionHeader
-      title="New blog post"
-      subtitle="Pridaj nový článok do blogu."
-    />
+  <v-container fluid>
+    <main class="container">
+    <SectionHeader title="New blog post" subtitle="Pridaj nový článok do blogu." />
 
-    <form class="form" @submit.prevent="createPost">
-      <label>
-        <span class="text">Title</span>
-        <input v-model="title" />
-      </label>
+    <v-card class="surface" max-width="1100">
+      <v-card-text>
+        <v-form @submit.prevent="createPost">
+          <v-text-field v-model="title" label="Title" variant="outlined" />
+          <v-text-field v-model="slug" label="Slug (napr. moja-aktivita)" variant="outlined" />
+          <v-text-field v-model="date" label="Date (YYYY-MM-DD)" variant="outlined" />
 
-      <label>
-        <span class="text">Slug</span>
-        <input v-model="slug" />
-      </label>
+          <v-select
+            v-model="tag"
+            :items="tagOptions"
+            label="Tag"
+            variant="outlined"
+          />
 
-      <label>
-        <span class="text">Date</span>
-        <input v-model="date" placeholder="2026-01-15" />
-      </label>
+          <v-textarea v-model="excerpt" label="Excerpt (short)" variant="outlined" rows="3" />
+          <v-textarea v-model="content" label="Content (full text)" variant="outlined" rows="6" />
 
-      <label>
-        <span class="text">Tag</span>
-        <select v-model="tag">
-            <option v-for="t in tagOptions" :key="t" :value="t">{{ t }}</option>
-        </select>
-      </label>
+          <p v-if="error" class="text error">{{ error }}</p>
 
-      <label>
-        <span class="text">Excerpt</span>
-        <textarea rows="3" v-model="excerpt"></textarea>
-      </label>
-
-      <label>
-        <span class="text">Content</span>
-        <textarea rows="6" v-model="content"></textarea>
-      </label>
-
-      <p v-if="error" class="text error">
-        {{ error }}
-      </p>
-
-      <div class="actions">
-        <button class="btn" type="submit">Create</button>
-        <RouterLink to="/admin">Cancel</RouterLink>
-      </div>
-    </form>
-  </main>
+          <div class="actions">
+            <button type="submit" class="btn btn-primary">Create</button>
+            <RouterLink to="/admin" class="btn btn-ghost">Cancel</RouterLink>
+          </div>
+        </v-form>
+      </v-card-text>
+    </v-card>
+    </main>
+  </v-container>
 </template>
 
 <script>
@@ -60,11 +43,13 @@ export default {
   data() {
     return {
       postsStore: usePostsStore(),
+
+      tagOptions: ["Aktivity", "Vzdelávanie", "Partnerstvá", "Výskum", "Médiá"],
+      tag: "Aktivity",
+
       title: "",
       slug: "",
       date: "",
-      tagOptions: ["Aktivity", "Vzdelávanie", "Partnerstvá", "Výskum", "Médiá"],
-      tag: "Aktivity",
       excerpt: "",
       content: "",
       error: "",
@@ -79,10 +64,7 @@ export default {
         return;
       }
 
-      const exists = this.postsStore.posts.some(
-        (p) => p.slug === this.slug
-      );
-
+      const exists = this.postsStore.posts.some((p) => p.slug === this.slug);
       if (exists) {
         this.error = "Slug už existuje.";
         return;
@@ -104,34 +86,17 @@ export default {
 </script>
 
 <style scoped>
-.form {
-  max-width: 600px;
-  display: grid;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-label {
-  display: grid;
-  gap: 4px;
-}
-
-input,
-textarea,
-select {
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.15);
-  font-family: inherit;
+.error {
+  color: #b00020;
+  font-weight: 800;
+  margin: 8px 0 12px;
 }
 
 .actions {
   display: flex;
   gap: 12px;
-  margin-top: 8px;
+  align-items: center;
+  margin-top: 12px;
 }
 
-.error {
-  color: #b00020;
-}
 </style>
