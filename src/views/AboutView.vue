@@ -1,14 +1,19 @@
 <template>
   <main class="container">
-    <h1 class="h1">About</h1>
-    <p class="text">
-      Toto je stránka o organizácii. Sem pôjde misia, hodnoty a základné info.
-    </p>
+    <SectionHeader
+      title="About"
+      subtitle="Toto je stránka o organizácii."
+    />
   </main>
 </template>
 
 <script>
+import SectionHeader from '@/components/SectionHeader.vue';
+
 export default {
   name: "AboutView",
+  components: {
+    SectionHeader
+  }
 };
 </script>

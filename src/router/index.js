@@ -6,6 +6,8 @@ import BlogView from "../views/BlogView.vue";
 import ProjectsView from "../views/ProjectsView.vue";
 import PeopleView from "../views/PeopleView.vue";
 
+import BlogDetailView from "../views/BlogDetailView.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -15,6 +17,8 @@ const router = createRouter({
     { path: "/blog", name: "blog", component: BlogView },
     { path: "/projects", name: "projects", component: ProjectsView },
     { path: "/people", name: "people", component: PeopleView },
+
+    { path: "/blog/:slug", name: "blog-detail", component: BlogDetailView },
   ],
 });
 

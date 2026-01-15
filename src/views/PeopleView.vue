@@ -1,14 +1,16 @@
 <template>
   <main class="container">
-    <h1 class="h1">People</h1>
-    <p class="text">
-      Tu budú ľudia (foto + krátke bio).
-    </p>
+    <SectionHeader title="People" subtitle="Tu budú ľudia (foto + krátke bio)." />
   </main>
 </template>
 
 <script>
+import SectionHeader from '@/components/SectionHeader.vue';
+
 export default {
   name: "PeopleView",
+  components: {
+    SectionHeader
+  }
 };
 </script>

@@ -51,7 +51,6 @@ export default {
   text-decoration: underline;
 }
 
-/* Vue Router dá aktívnej linke triedu "router-link-active" */
 .router-link-active {
   font-weight: 700;
   text-decoration: underline;

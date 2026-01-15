@@ -1,14 +1,16 @@
 <template>
   <main class="container">
-    <h1 class="h1">Projects</h1>
-    <p class="text">
-      Tu budú projekty organizácie.
-    </p>
+    <SectionHeader title="Projects" subtitle="Tu budú projekty organizácie." />
   </main>
 </template>
 
 <script>
+import SectionHeader from '@/components/SectionHeader.vue';
+
 export default {
   name: "ProjectsView",
+  components: {
+    SectionHeader
+  }
 };
 </script>

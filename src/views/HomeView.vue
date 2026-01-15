@@ -1,14 +1,19 @@
 <template>
   <main class="container">
-    <h1 class="h1">Home</h1>
-    <p class="text">
-      Toto je domovská stránka. Sem neskôr dáme úvod + najnovšie články.
-    </p>
+    <SectionHeader 
+    title="Domov"
+    subtitle="Toto je domovská stránka."
+    />
   </main>
 </template>
 
 <script>
+import SectionHeader from '@/components/SectionHeader.vue';
+
 export default {
   name: "HomeView",
+  components: {
+    SectionHeader
+  }
 };
 </script>
