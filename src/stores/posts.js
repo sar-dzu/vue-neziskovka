@@ -38,10 +38,16 @@ export const usePostsStore = defineStore("postsStore", {
 
   actions: {
     addPost(newPost) {
-      this.posts.unshift(newPost);
+        this.posts.unshift(newPost);
     },
     deletePost(slug) {
-      this.posts = this.posts.filter((p) => p.slug !== slug);
-    }
+        this.posts = this.posts.filter((p) => p.slug !== slug);
+    },
+    updatePost(updatedPost) {
+        const index = this.posts.findIndex((p) => p.slug === updatedPost.slug);
+        if (index !== -1) {
+            this.posts[index] = updatedPost;
+        }
+    },
   }
 });

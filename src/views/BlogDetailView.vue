@@ -14,7 +14,7 @@
       Článok sa nenašiel.
     </p>
 
-    <RouterLink to="/blog" class="back">← Späť na blog</RouterLink>
+    <RouterLink :to="backTo" class="back">← Späť</RouterLink>
   </main>
 </template>
 
@@ -36,6 +36,9 @@ export default {
     },
     post() {
       return this.postsStore.getBySlug(this.slug);
+    },
+    backTo() {
+      return this.$route.query.from === "admin" ? "/admin" : "/blog";
     },
   },
 };

@@ -35,3 +35,63 @@ a {
   line-height: 1.7;
   opacity: 0.95;
 }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+
+  background: #1E3A5F;
+  color: white;
+
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.95;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 12px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.03);
+  color: inherit;
+
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  background: salmon;
+}
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(176, 0, 32, 0.25);
+  background: rgba(176, 0, 32, 0.06);
+
+  color: #b00020;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background: white;
+}

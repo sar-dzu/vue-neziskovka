@@ -8,6 +8,7 @@
       <RouterLink to="/blog" class="link">Blog</RouterLink>
       <RouterLink to="/people" class="link">People</RouterLink>
       <RouterLink to="/about" class="link">About</RouterLink>
+      <RouterLink to="/admin" class="link">Admin</RouterLink>
     </div>
   </nav>
 </template>
