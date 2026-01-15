@@ -1,9 +1,17 @@
 <template>
   <main class="container">
-    <SectionHeader :title="title" :subtitle="date" />
+    <SectionHeader
+      v-if="post"
+      :title="post.title"
+      :subtitle="post.date"
+    />
 
-    <p class="text">
-      Toto je detail článku. Neskôr sem dáme celý text článku podľa slug: <b>{{ slug }}</b>.
+    <p v-if="post" class="text">
+      {{ post.content }}
+    </p>
+
+    <p v-else class="text">
+      Článok sa nenašiel.
     </p>
 
     <RouterLink to="/blog" class="back">← Späť na blog</RouterLink>
@@ -12,19 +20,22 @@
 
 <script>
 import SectionHeader from "../components/SectionHeader.vue";
+import { usePostsStore } from "../stores/posts";
 
 export default {
   name: "BlogDetailView",
   components: { SectionHeader },
+  data() {
+    return {
+      postsStore: usePostsStore(),
+    };
+  },
   computed: {
     slug() {
       return this.$route.params.slug;
     },
-    title() {
-      return "Detail článku";
-    },
-    date() {
-      return "Dátum: (doplníme neskôr)";
+    post() {
+      return this.postsStore.getBySlug(this.slug);
     },
   },
 };

@@ -4,7 +4,7 @@
 
     <div class="grid">
       <PostCard
-        v-for="post in posts"
+        v-for="post in postsStore.posts"
         :key="post.slug"
         :title="post.title"
         :excerpt="post.excerpt"
@@ -19,6 +19,7 @@
 <script>
 import SectionHeader from "../components/SectionHeader.vue";
 import PostCard from "../components/PostCard.vue";
+import { usePostsStore } from "../stores/posts";
 
 export default {
   name: "BlogView",
@@ -28,29 +29,7 @@ export default {
   },
   data() {
     return {
-      posts: [
-        {
-          title: "Dobrovoľnícky deň v komunite",
-          excerpt: "Krátke zhrnutie toho, čo sme robili a čo sa podarilo.",
-          date: "2026-01-10",
-          tag: "Aktivity",
-          slug: "dobrovolnicky-den",
-        },
-        {
-          title: "Workshop: Participácia v praxi",
-          excerpt: "Ako vyzerá participácia v meste a čo to znamená pre ľudí.",
-          date: "2026-01-06",
-          tag: "Vzdelávanie",
-          slug: "workshop-participacia",
-        },
-        {
-          title: "Spolupráca s miestnou samosprávou",
-          excerpt: "Stretli sme sa so zástupcami mesta a dohodli ďalšie kroky.",
-          date: "2025-12-20",
-          tag: "Partnerstvá",
-          slug: "spolupraca-so-samospravou",
-        },
-      ],
+      postsStore: usePostsStore(),
     };
   },
 };
