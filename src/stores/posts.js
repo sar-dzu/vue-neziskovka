@@ -37,17 +37,35 @@ export const usePostsStore = defineStore("postsStore", {
   },
 
   actions: {
+    loadFromStorage() {
+        const raw = localStorage.getItem("posts");
+        if (raw) {
+            try {
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed)) {
+                    this.posts = parsed;
+                }
+            } catch (e) {
+            }
+        }
+    },
+    saveToStorage() {
+        localStorage.setItem("posts", JSON.stringify(this.posts));
+    },
     addPost(newPost) {
         this.posts.unshift(newPost);
-    },
-    deletePost(slug) {
-        this.posts = this.posts.filter((p) => p.slug !== slug);
+        this.saveToStorage();
     },
     updatePost(updatedPost) {
         const index = this.posts.findIndex((p) => p.slug === updatedPost.slug);
         if (index !== -1) {
             this.posts[index] = updatedPost;
+            this.saveToStorage();
         }
     },
-  }
+    deletePost(slug) {
+        this.posts = this.posts.filter((p) => p.slug !== slug);
+        this.saveToStorage();
+    },
+},
 });

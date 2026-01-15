@@ -15,6 +15,7 @@ export const useAuthStore = defineStore("authStore", {
       if (ok) {
         this.isAdminLoggedIn = true;
         this.loginError = "";
+        this.saveSession();
         return true;
       }
       this.isAdminLoggedIn = false;
@@ -25,6 +26,14 @@ export const useAuthStore = defineStore("authStore", {
     logout() {
       this.isAdminLoggedIn = false;
       this.loginError = "";
+      this.saveSession();
+    },
+    loadSession() {
+        const raw = localStorage.getItem("adminLoggedIn");
+        this.isAdminLoggedIn = raw === "true";
+    },
+    saveSession() {
+        localStorage.setItem("adminLoggedIn", String(this.isAdminLoggedIn));
     },
   },
 });
