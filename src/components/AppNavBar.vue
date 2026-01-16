@@ -4,11 +4,11 @@
     <RouterLink to="/" class="brand">Mestáreň</RouterLink>
 
     <div class="nav-links">
-      <RouterLink to="/" class="nav-link">Home</RouterLink>
-      <RouterLink to="/projects" class="nav-link">Projects</RouterLink>
+      <RouterLink to="/" class="nav-link">Domov</RouterLink>
+      <RouterLink to="/projects" class="nav-link">Projekty</RouterLink>
       <RouterLink to="/blog" class="nav-link">Blog</RouterLink>
-      <RouterLink to="/people" class="nav-link">People</RouterLink>
-      <RouterLink to="/about" class="nav-link">About</RouterLink>
+      <RouterLink to="/people" class="nav-link">Náš tím</RouterLink>
+      <RouterLink to="/about" class="nav-link">O nás</RouterLink>
       <RouterLink to="/admin" class="nav-link">Admin</RouterLink>
     </div>
   </div>
