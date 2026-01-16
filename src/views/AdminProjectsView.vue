@@ -37,6 +37,10 @@ export default {
     return { projectsStore: useProjectsStore() };
   },
   methods: {
+    logout() {
+      this.authStore.logout();
+      this.$router.push("/");
+    },
     remove(slug) {
         if (confirm("Naozaj chceš vymazať tento projekt?")) {
             this.projectsStore.deleteProject(slug);

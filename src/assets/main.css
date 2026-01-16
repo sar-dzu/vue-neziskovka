@@ -3,7 +3,8 @@
 #app {
   min-height: 100vh;
   font-weight: normal;
-  
+  display: flex;
+  flex-direction: column;
 }
 
 * {
@@ -29,6 +30,16 @@
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: var(--space-4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+
+.surface:hover {
+  transform: translateY(-1px);
+}
+
+html {
+  height: 100%;
 }
 
 body {
@@ -37,6 +48,9 @@ body {
   height: 100%;
 }
 
+.v-main {
+  flex: 1;
+}
 
 a {
   text-decoration: none;

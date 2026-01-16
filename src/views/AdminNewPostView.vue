@@ -24,7 +24,7 @@
 
           <div class="actions">
             <button type="submit" class="btn btn-primary">Create</button>
-            <RouterLink to="/admin" class="btn btn-ghost">Cancel</RouterLink>
+            <RouterLink to="/admin/posts" class="btn btn-ghost">Cancel</RouterLink>
           </div>
         </v-form>
       </v-card-text>
@@ -79,7 +79,7 @@ export default {
         content: this.content,
       });
 
-      this.$router.push("/admin");
+      this.$router.push("/admin/posts");
     },
   },
 };

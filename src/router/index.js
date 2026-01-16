@@ -46,6 +46,9 @@ const router = createRouter({
     { path: "/admin/projects/:slug/edit", name: "admin-project-edit", component: AdminEditProjectView },
   
   ],
+  scrollBehavior() {
+    return { top: 0 };
+  },
 });
 
 router.beforeEach((to) => {
