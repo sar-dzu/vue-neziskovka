@@ -38,7 +38,7 @@ export default {
       return this.postsStore.getBySlug(this.slug);
     },
     backTo() {
-      return this.$route.query.from === "admin" ? "/admin" : "/blog";
+      return this.$route.query.from === "admin" ? "/admin/posts" : "/blog";
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <main class="container">
-    <SectionHeader title="Blog" subtitle="Tu budú články o aktivitách." />
+    <SectionHeader title="Blog" subtitle="Články o našich aktivitách." />
 
     <div class="grid stack">
       <PostCard

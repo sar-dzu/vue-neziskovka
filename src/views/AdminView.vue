@@ -1,88 +1,57 @@
 <template>
-  <main class="container">
-    <SectionHeader
-      title="Admin – Blog"
-      subtitle="Správa blogových článkov."
-    />
+  <main class="container stack">
+    <SectionHeader title="Admin" subtitle="Správa obsahu stránky." />
 
-    <div class="admin-actions">
-      <RouterLink class="btn" to="/admin/posts/new">
-        + New post
-      </RouterLink>
+    <div class="grid">
+      <div class="surface stack">
+        <h2 class="h2">Blog</h2>
+        <p class="text">Pridávaj a upravuj články o aktivitách.</p>
+        <RouterLink to="/admin/posts" class="btn">Manage blog</RouterLink>
+      </div>
 
-      <button class="btn btn-ghost" @click="logout">Logout</button>
-    </div>
-
-    <div class="list">
-      <div
-        v-for="post in postsStore.posts"
-        :key="post.slug"
-        class="row surface"
-      >
-        <div>
-          <div class="h2">{{ post.title }}</div>
-          <p class="text">{{ post.date }} • {{ post.tag }}</p>
-        </div>
-
-        <div class="row-actions">
-            <RouterLink :to="`/blog/${post.slug}?from=admin`" class="btn">View</RouterLink>
-            <RouterLink :to="`/admin/posts/${post.slug}/edit`" class="btn">Edit</RouterLink>
-            <button class="btn btn-danger" @click="deletePost(post.slug)">Delete</button>
-        </div>
+      <div class="surface stack">
+        <h2 class="h2">Projects</h2>
+        <p class="text">Pridávaj a upravuj dlhodobé projekty organizácie.</p>
+        <RouterLink to="/admin/projects" class="btn btn-accent">Manage projects</RouterLink>
       </div>
     </div>
+
+    <button class="btn btn-ghost logout-btn" @click="logout">Logout</button>
   </main>
 </template>
 
 <script>
 import SectionHeader from "../components/SectionHeader.vue";
 import { useAuthStore } from "../stores/auth";
-import { usePostsStore } from "../stores/posts";
 
 export default {
   name: "AdminView",
   components: { SectionHeader },
   data() {
-    return {
-      authStore: useAuthStore(),
-      postsStore: usePostsStore(),
-    };
+    return { authStore: useAuthStore() };
   },
   methods: {
     logout() {
       this.authStore.logout();
-      this.$router.push("/");
-    },
-    deletePost(slug) {
-      if (confirm("Naozaj chceš zmazať tento článok?")) {
-        this.postsStore.deletePost(slug);
-      }
+      this.$router.push("/admin/login");
     },
   },
 };
 </script>
 
 <style scoped>
-.admin-actions {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.list {
+.grid {
   display: grid;
-  gap: 12px;
+  gap: 16px;
 }
 
-.row {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow);
+.logout-btn {
+  width: fit-content;
 }
 
-.row-actions {
-  display: flex;
-  gap: 10px;
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 </style>

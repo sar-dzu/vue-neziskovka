@@ -6,7 +6,7 @@
         </div>
         <h2 class="title">{{ title }}</h2>
         <p class="excerpt">{{ excerpt }}</p>
-        <RouterLink :to="to" class="read-more">Čítať viac</RouterLink>
+        <RouterLink :to="to" class="btn btn-primary">Čítať viac</RouterLink>
     </article>
     
 </template>

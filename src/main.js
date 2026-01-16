@@ -9,6 +9,8 @@ import vuetify from "./plugins/vuetify";
 
 import { usePostsStore } from "./stores/posts";
 import { useAuthStore } from "./stores/auth";
+import { useProjectsStore } from "./stores/projects";
+
 
 const app = createApp(App);
 
@@ -22,5 +24,9 @@ postsStore.loadFromStorage();
 
 const authStore = useAuthStore(pinia);
 authStore.loadSession?.();
+
+const projectsStore = useProjectsStore(pinia);
+projectsStore.loadFromStorage();
+
 
 app.mount("#app");

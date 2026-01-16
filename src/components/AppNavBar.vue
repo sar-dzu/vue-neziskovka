@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
   <div class="navbar-inner">
-    <RouterLink to="/" class="brand">Neziskovka</RouterLink>
+    <RouterLink to="/" class="brand">Mestáreň</RouterLink>
 
     <div class="nav-links">
       <RouterLink to="/" class="nav-link">Home</RouterLink>
@@ -45,7 +45,7 @@ export default {
 
 .brand {
   font-weight: 900;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: white;
 }
 
