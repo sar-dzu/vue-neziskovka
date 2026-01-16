@@ -44,7 +44,7 @@ export default {
 .tag {
   padding: 2px 8px;
   border-radius: 999px;
-  background: rgba(30, 58, 95, 0.1);
+  background: rgba(30, 58, 95, 0.15);
 }
 
 .title {

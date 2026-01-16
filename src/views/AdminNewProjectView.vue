@@ -7,22 +7,28 @@
         <v-card-text>
           <v-form @submit.prevent="createProject">
             <v-text-field v-model="title" label="Title" variant="outlined" />
-            <v-text-field v-model="slug" label="Slug (napr. moj-projekt)" variant="outlined" />
+            <v-text-field
+              v-model="slug"
+              label="Slug"
+              variant="outlined"
+              @update:modelValue="slugTouched = true"
+            />
 
             <v-select
               v-model="status"
-              :items="statusOptions"
+              :items="projectStatusOptions"
               label="Status"
               variant="outlined"
             />
 
             <v-select
               v-model="tags"
-              :items="tagOptions"
+              :items="projectTagOptions"
               label="Tags"
               variant="outlined"
               multiple
               chips
+              closable-chips
             />
 
             <v-textarea
@@ -42,7 +48,7 @@
             <p v-if="error" class="text error">{{ error }}</p>
 
             <div class="actions">
-              <button type="submit" class="btn">Create</button>
+              <button type="submit" class="btn btn-primary">Create</button>
               <RouterLink to="/admin/projects" class="btn btn-ghost">Cancel</RouterLink>
             </div>
           </v-form>
@@ -55,10 +61,12 @@
 <script>
 import SectionHeader from "../components/SectionHeader.vue";
 import { useProjectsStore } from "../stores/projects";
+import { slugify, nowStamp } from "../utils/text.js";
 
 export default {
   name: "AdminNewProjectView",
   components: { SectionHeader },
+  inject: ["projectTagOptions", "projectStatusOptions"],
   data() {
     return {
       projectsStore: useProjectsStore(),
@@ -70,14 +78,7 @@ export default {
       shortDescription: "",
       description: "",
       error: "",
-
-      statusOptions: [
-        { title: "Planned", value: "planned" },
-        { title: "Ongoing", value: "ongoing" },
-        { title: "Finished", value: "finished" },
-      ],
-
-      tagOptions: ["Vzdelávanie", "Komunita", "Pomoc", "Výskum", "Mládež", "Médiá"],
+      slugTouched: false,
     };
   },
   methods: {
@@ -86,12 +87,6 @@ export default {
 
       if (!this.title || !this.slug || !this.shortDescription || !this.description) {
         this.error = "Vyplň title, slug, shortDescription a description.";
-        return;
-      }
-
-      const exists = this.projectsStore.projects.some((p) => p.slug === this.slug);
-      if (exists) {
-        this.error = "Slug už existuje.";
         return;
       }
 
@@ -105,6 +100,11 @@ export default {
       });
 
       this.$router.push("/admin/projects");
+    },
+  },
+  watch: {
+    title(newVal) {
+        if (!this.slugTouched) this.slug = slugify(newVal);
     },
   },
 };

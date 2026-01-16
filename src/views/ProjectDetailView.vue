@@ -35,3 +35,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.surface {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.h1, .text {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+</style>

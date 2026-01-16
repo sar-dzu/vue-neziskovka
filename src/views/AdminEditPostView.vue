@@ -23,14 +23,15 @@
           />
 
           <v-text-field
-            v-model="date"
-            label="Date"
+            :model-value="date"
+            label="Created at"
             variant="outlined"
+            disabled
           />
 
           <v-select
             v-model="tag"
-            :items="tagOptions"
+            :items="blogTagOptions"
             label="Tag"
             variant="outlined"
           />
@@ -53,7 +54,7 @@
 
           <div class="actions">
             <button type="submit" class="btn btn-primary">Save</button>
-            <RouterLink to="/admin" class="btn btn-ghost">Cancel</RouterLink>
+            <RouterLink to="/admin/posts" class="btn btn-ghost">Cancel</RouterLink>
           </div>
         </v-form>
       </v-card-text>
@@ -69,6 +70,7 @@ import { usePostsStore } from "../stores/posts";
 export default {
   name: "AdminEditPostView",
   components: { SectionHeader },
+  inject: ["blogTagOptions"],
   data() {
     return {
       postsStore: usePostsStore(),
@@ -78,7 +80,6 @@ export default {
       slug: "",
       date: "",
       tag: "Aktivity",
-      tagOptions: ["Aktivity", "Vzdelávanie", "Partnerstvá", "Výskum", "Médiá"],
       excerpt: "",
       content: "",
     };
@@ -119,7 +120,7 @@ export default {
         content: this.content,
       });
 
-      this.$router.push("/admin");
+      this.$router.push("/admin/posts");
     },
   },
 };

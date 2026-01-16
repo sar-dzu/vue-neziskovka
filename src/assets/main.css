@@ -48,9 +48,6 @@ body {
   height: 100%;
 }
 
-.v-main {
-  flex: 1;
-}
 
 a {
   text-decoration: none;
@@ -153,3 +150,4 @@ a {
 .btn-danger:hover {
   background: rgba(176, 0, 32, 0.10);
 }
+

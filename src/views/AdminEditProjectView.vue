@@ -19,18 +19,19 @@
 
             <v-select
               v-model="status"
-              :items="statusOptions"
+              :items="projectStatusOptions"
               label="Status"
               variant="outlined"
             />
 
             <v-select
               v-model="tags"
-              :items="tagOptions"
+              :items="projectTagOptions"
               label="Tags"
               variant="outlined"
               multiple
               chips
+              closable-chips
             />
 
             <v-textarea
@@ -50,7 +51,7 @@
             <p v-if="error" class="text error">{{ error }}</p>
 
             <div class="actions">
-              <button type="submit" class="btn">Save</button>
+              <button type="submit" class="btn btn-primary">Save</button>
               <RouterLink to="/admin/projects" class="btn btn-ghost">Cancel</RouterLink>
             </div>
           </v-form>
@@ -67,6 +68,7 @@ import { useProjectsStore } from "../stores/projects";
 export default {
   name: "AdminEditProjectView",
   components: { SectionHeader },
+  inject: ["projectTagOptions", "projectStatusOptions"],
   data() {
     return {
       projectsStore: useProjectsStore(),
@@ -78,14 +80,6 @@ export default {
       tags: [],
       shortDescription: "",
       description: "",
-
-      statusOptions: [
-        { title: "Planned", value: "planned" },
-        { title: "Ongoing", value: "ongoing" },
-        { title: "Finished", value: "finished" },
-      ],
-
-      tagOptions: ["Vzdelávanie", "Komunita", "Pomoc", "Výskum", "Mládež", "Médiá"],
     };
   },
   computed: {

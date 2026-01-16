@@ -21,12 +21,12 @@
             <div class="text">{{ projectsLabel }}</div>
           </div>
           <div class="stat">
-            <div class="stat-number">{{ postsCount }}</div>
-            <div class="text">{{ postsLabel }}</div>
-          </div>
-          <div class="stat">
             <div class="stat-number">{{ ongoingCount }}</div>
             <div class="text">v procese</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">{{ postsCount }}</div>
+            <div class="text">{{ postsLabel }}</div>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
           <h3 class="mini-title">Kontakt</h3>
           <p class="text">info@neziskovka.sk</p>
           <p class="text">+421 900 000 000</p>
-          <p class="text">Mesto (doplníš neskôr)</p>
+          <p class="text">Mesto xxx</p>
         </div>
       </div>
     </section>

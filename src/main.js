@@ -11,6 +11,8 @@ import { usePostsStore } from "./stores/posts";
 import { useAuthStore } from "./stores/auth";
 import { useProjectsStore } from "./stores/projects";
 
+import "@mdi/font/css/materialdesignicons.css";
+
 
 const app = createApp(App);
 

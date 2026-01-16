@@ -5,7 +5,7 @@
     <div class="filter-bar">
       <label class="filter">
         <span class="text">Status</span>
-        <select v-model="statusFilter" class="btn btn-primary">
+        <select v-model="statusFilter" class="btn btn-accent">
           <option value="all">Všetky</option>
           <option value="planned">Plánujeme</option>
           <option value="ongoing">V procese</option>

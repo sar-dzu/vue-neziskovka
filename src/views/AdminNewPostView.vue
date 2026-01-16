@@ -7,12 +7,16 @@
       <v-card-text>
         <v-form @submit.prevent="createPost">
           <v-text-field v-model="title" label="Title" variant="outlined" />
-          <v-text-field v-model="slug" label="Slug (napr. moja-aktivita)" variant="outlined" />
-          <v-text-field v-model="date" label="Date (YYYY-MM-DD)" variant="outlined" />
+          <v-text-field
+            v-model="slug"
+            label="Slug"
+            variant="outlined"
+            @update:modelValue="slugTouched = true"
+          />
 
           <v-select
             v-model="tag"
-            :items="tagOptions"
+            :items="blogTagOptions"
             label="Tag"
             variant="outlined"
           />
@@ -36,50 +40,49 @@
 <script>
 import SectionHeader from "../components/SectionHeader.vue";
 import { usePostsStore } from "../stores/posts";
+import { slugify, nowStamp } from "../utils/text.js";
 
 export default {
   name: "AdminNewPostView",
   components: { SectionHeader },
+  inject: ["blogTagOptions"],
   data() {
     return {
       postsStore: usePostsStore(),
-
-      tagOptions: ["Aktivity", "Vzdelávanie", "Partnerstvá", "Výskum", "Médiá"],
       tag: "Aktivity",
-
       title: "",
       slug: "",
       date: "",
       excerpt: "",
       content: "",
       error: "",
+      slugTouched: false,
     };
   },
   methods: {
     createPost() {
       this.error = "";
 
-      if (!this.title || !this.slug || !this.date || !this.excerpt || !this.content) {
+      if (!this.title || !this.slug || !this.excerpt || !this.content) {
         this.error = "Vyplň všetky povinné polia.";
-        return;
-      }
-
-      const exists = this.postsStore.posts.some((p) => p.slug === this.slug);
-      if (exists) {
-        this.error = "Slug už existuje.";
         return;
       }
 
       this.postsStore.addPost({
         title: this.title,
         slug: this.slug,
-        date: this.date,
+        date: nowStamp(),
         tag: this.tag || "Aktivity",
         excerpt: this.excerpt,
         content: this.content,
       });
 
       this.$router.push("/admin/posts");
+    },
+  },
+  watch: {
+    title(newVal) {
+      if (!this.slugTouched) this.slug = slugify(newVal);
     },
   },
 };
