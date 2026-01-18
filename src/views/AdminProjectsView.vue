@@ -8,7 +8,11 @@
       <button class="btn btn-ghost" @click="logout">Logout</button>
     </div>
 
-    <div class="stack">
+    <div v-if="projectsStore.projects.length === 0" class="surface">
+      <h3 class="h2">Žiadne projekty</h3>
+    </div>
+
+    <div v-else class="stack">
       <div v-for="p in projectsStore.projects" :key="p.id" class="surface row">
         <div>
           <h3 class="h2" style="margin:0">{{ p.title }}</h3>
@@ -19,33 +23,56 @@
         <div class="row-actions">
           <RouterLink :to="`/projects/${p.slug}?from=admin`" class="btn btn-ghost">View</RouterLink>
           <RouterLink :to="`/admin/projects/${p.slug}/edit`" class="btn">Edit</RouterLink>
-          <button class="btn btn-danger" @click="remove(p.slug)">Delete</button>
+          <button class="btn btn-danger" @click="openDelete(p.slug)">Delete</button>
         </div>
       </div>
     </div>
+    <v-dialog v-model="deleteDialog" max-width="520">
+      <v-card>
+        <v-card-title>Naozaj chceš zmazať projekt?</v-card-title>
+        <v-card-text>Túto akciu nie je možné vrátiť späť.</v-card-text>
+
+        <v-card-actions>
+          <v-spacer />
+          <v-btn variant="text" @click="deleteDialog = false">Zrušiť</v-btn>
+          <v-btn color="red" @click="confirmDelete">Zmazať</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </main>
 </template>
 
 <script>
 import SectionHeader from "../components/SectionHeader.vue";
 import { useProjectsStore } from "../stores/projects";
+import { useAuthStore } from "../stores/auth";
+import { useUiStore } from "../stores/ui";
 
 export default {
   name: "AdminProjectsView",
   components: { SectionHeader },
   data() {
-    return { projectsStore: useProjectsStore() };
+    return { projectsStore: useProjectsStore(),
+      authStore: useAuthStore(),
+      deleteDialog: false,
+      slugToDelete: null,
+      ui: useUiStore(), };
   },
   methods: {
     logout() {
       this.authStore.logout();
       this.$router.push("/");
     },
-    remove(slug) {
-        if (confirm("Naozaj chceš vymazať tento projekt?")) {
-            this.projectsStore.deleteProject(slug);
-        }
-    }
+    openDelete(slug) {
+      this.slugToDelete = slug;
+      this.deleteDialog = true;
+    },
+    confirmDelete() {
+      this.projectsStore.deleteProject(this.slugToDelete);
+      this.deleteDialog = false;
+      this.slugToDelete = null;
+      this.ui.toast("Projekt zmazaný", "success");
+    },
   },
 };
 </script>

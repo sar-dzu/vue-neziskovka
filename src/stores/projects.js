@@ -50,10 +50,13 @@ export const useProjectsStore = defineStore("projectsStore", {
       const nextId =
         this.projects.length ? Math.max(...this.projects.map((p) => p.id)) + 1 : 1;
 
+      const uniqueSlug = this.makeUniqueSlug(project.slug);
+
       this.projects.unshift({
         id: nextId,
-        tags: [],
         ...project,
+        slug: uniqueSlug,
+        tags: project.tags || [],
       });
 
       this.saveToStorage();
@@ -70,6 +73,17 @@ export const useProjectsStore = defineStore("projectsStore", {
     deleteProject(slug) {
       this.projects = this.projects.filter((p) => p.slug !== slug);
       this.saveToStorage();
+    },
+
+    makeUniqueSlug(base) {
+      let candidate = base;
+      let i = 2;
+
+      while (this.getBySlug(candidate)) {
+        candidate = `${base}-${i}`;
+        i++;
+      }
+      return candidate;
     },
   },
 });

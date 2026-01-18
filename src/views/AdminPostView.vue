@@ -11,6 +11,10 @@
       <button class="btn btn-ghost" @click="logout">Logout</button>
     </div>
 
+    <div v-if="postsStore.posts.length === 0" class="stack">
+      <h3 class="h2">Žiadne články</h3>
+    </div>
+
     <div class="list">
       <div
         v-for="post in postsStore.posts"
@@ -25,10 +29,22 @@
         <div class="row-actions">
             <RouterLink :to="`/blog/${post.slug}?from=admin`" class="btn">View</RouterLink>
             <RouterLink :to="`/admin/posts/${post.slug}/edit`" class="btn">Edit</RouterLink>
-            <button class="btn btn-danger" @click="deletePost(post.slug)">Delete</button>
+            <button class="btn btn-danger" @click="openDelete(post.slug)">Delete</button>
         </div>
       </div>
     </div>
+    <v-dialog v-model="deleteDialog" max-width="520">
+      <v-card>
+        <v-card-title>Naozaj chceš zmazať článok?</v-card-title>
+        <v-card-text>Túto akciu nie je možné vrátiť späť.</v-card-text>
+
+        <v-card-actions>
+          <v-spacer />
+          <v-btn variant="text" @click="deleteDialog = false">Zrušiť</v-btn>
+          <v-btn color="red" @click="confirmDelete">Zmazať</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </main>
 </template>
 
@@ -36,6 +52,7 @@
 import SectionHeader from "../components/SectionHeader.vue";
 import { useAuthStore } from "../stores/auth";
 import { usePostsStore } from "../stores/posts";
+import { useUiStore } from "../stores/ui";
 
 export default {
   name: "AdminView",
@@ -44,6 +61,9 @@ export default {
     return {
       authStore: useAuthStore(),
       postsStore: usePostsStore(),
+      deleteDialog: false,
+      slugToDelete: null,
+      ui: useUiStore(),
     };
   },
   methods: {
@@ -51,10 +71,15 @@ export default {
       this.authStore.logout();
       this.$router.push("/");
     },
-    deletePost(slug) {
-      if (confirm("Naozaj chceš zmazať tento článok?")) {
-        this.postsStore.deletePost(slug);
-      }
+    openDelete(slug) {
+      this.slugToDelete = slug;
+      this.deleteDialog = true;
+    },
+    confirmDelete() {
+      this.postsStore.deletePost(this.slugToDelete);
+      this.deleteDialog = false;
+      this.slugToDelete = null;
+      this.ui.toast("Článok zmazaný", "success");
     },
   },
 };

@@ -53,8 +53,14 @@ export const usePostsStore = defineStore("postsStore", {
         localStorage.setItem("posts", JSON.stringify(this.posts));
     },
     addPost(newPost) {
-        this.posts.unshift(newPost);
-        this.saveToStorage();
+      const uniqueSlug = this.makeUniqueSlug(newPost.slug);
+
+      this.posts.unshift({
+        ...newPost,
+        slug: uniqueSlug,
+      });
+
+      this.saveToStorage();
     },
     updatePost(updatedPost) {
         const index = this.posts.findIndex((p) => p.slug === updatedPost.slug);
@@ -66,6 +72,16 @@ export const usePostsStore = defineStore("postsStore", {
     deletePost(slug) {
         this.posts = this.posts.filter((p) => p.slug !== slug);
         this.saveToStorage();
+    },
+    makeUniqueSlug(base) {
+      let candidate = base;
+      let i = 2;
+
+      while (this.getBySlug(candidate)) {
+        candidate = `${base}-${i}`;
+        i++;
+      }
+      return candidate;
     },
 },
 });

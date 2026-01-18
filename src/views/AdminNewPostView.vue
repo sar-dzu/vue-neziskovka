@@ -24,7 +24,6 @@
           <v-textarea v-model="excerpt" label="Excerpt (short)" variant="outlined" rows="3" />
           <v-textarea v-model="content" label="Content (full text)" variant="outlined" rows="6" />
 
-          <p v-if="error" class="text error">{{ error }}</p>
 
           <div class="actions">
             <button type="submit" class="btn btn-primary">Create</button>
@@ -41,6 +40,7 @@
 import SectionHeader from "../components/SectionHeader.vue";
 import { usePostsStore } from "../stores/posts";
 import { slugify, nowStamp } from "../utils/text.js";
+import { useUiStore } from "../stores/ui";
 
 export default {
   name: "AdminNewPostView",
@@ -48,6 +48,7 @@ export default {
   inject: ["blogTagOptions"],
   data() {
     return {
+      ui: useUiStore(),
       postsStore: usePostsStore(),
       tag: "Aktivity",
       title: "",
@@ -55,16 +56,16 @@ export default {
       date: "",
       excerpt: "",
       content: "",
-      error: "",
+      //error: "",
       slugTouched: false,
     };
   },
   methods: {
     createPost() {
-      this.error = "";
+      //this.error = "";
 
       if (!this.title || !this.slug || !this.excerpt || !this.content) {
-        this.error = "Vyplň všetky povinné polia.";
+        this.ui.toast("Vyplň všetky povinné polia.", "error");
         return;
       }
 
@@ -77,8 +78,11 @@ export default {
         content: this.content,
       });
 
+      this.ui.toast("Článok vytvorený", "success");
+
       this.$router.push("/admin/posts");
     },
+    
   },
   watch: {
     title(newVal) {

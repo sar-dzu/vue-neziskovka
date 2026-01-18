@@ -48,8 +48,6 @@
               rows="6"
             />
 
-            <p v-if="error" class="text error">{{ error }}</p>
-
             <div class="actions">
               <button type="submit" class="btn btn-primary">Save</button>
               <RouterLink to="/admin/projects" class="btn btn-ghost">Cancel</RouterLink>
@@ -64,6 +62,7 @@
 <script>
 import SectionHeader from "../components/SectionHeader.vue";
 import { useProjectsStore } from "../stores/projects";
+import { useUiStore } from "../stores/ui";
 
 export default {
   name: "AdminEditProjectView",
@@ -71,8 +70,9 @@ export default {
   inject: ["projectTagOptions", "projectStatusOptions"],
   data() {
     return {
+      ui: useUiStore(),
       projectsStore: useProjectsStore(),
-      error: "",
+      //error: "",
 
       title: "",
       slug: "",
@@ -102,10 +102,10 @@ export default {
   },
   methods: {
     save() {
-      this.error = "";
+      //this.error = "";
 
       if (!this.title || !this.shortDescription || !this.description) {
-        this.error = "Vyplň title, shortDescription a description.";
+       this.ui.toast("Vyplň všetky povinné polia.", "error");
         return;
       }
 
@@ -117,6 +117,9 @@ export default {
         shortDescription: this.shortDescription,
         description: this.description,
       });
+
+      this.ui.toast("Projekt uložený", "success");
+      this.$router.push("/admin/posts");
 
       this.$router.push("/admin/projects");
     },

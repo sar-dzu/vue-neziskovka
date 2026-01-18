@@ -50,8 +50,6 @@
             rows="6"
           />
 
-          <p v-if="error" class="text error">{{ error }}</p>
-
           <div class="actions">
             <button type="submit" class="btn btn-primary">Save</button>
             <RouterLink to="/admin/posts" class="btn btn-ghost">Cancel</RouterLink>
@@ -66,6 +64,7 @@
 <script>
 import SectionHeader from "../components/SectionHeader.vue";
 import { usePostsStore } from "../stores/posts";
+import { useUiStore } from "../stores/ui";
 
 export default {
   name: "AdminEditPostView",
@@ -73,8 +72,9 @@ export default {
   inject: ["blogTagOptions"],
   data() {
     return {
+      ui: useUiStore(),
       postsStore: usePostsStore(),
-      error: "",
+      //error: "",
 
       title: "",
       slug: "",
@@ -104,10 +104,10 @@ export default {
   },
   methods: {
     save() {
-      this.error = "";
+      //this.error = "";
 
       if (!this.title || !this.date || !this.excerpt || !this.content) {
-        this.error = "Vyplň prosím title, date, excerpt a content.";
+        this.ui.toast("Vyplň všetky povinné polia.", "error");
         return;
       }
 
@@ -119,6 +119,9 @@ export default {
         excerpt: this.excerpt,
         content: this.content,
       });
+
+      this.ui.toast("Článok uložený", "success");
+      this.$router.push("/admin/posts");
 
       this.$router.push("/admin/posts");
     },

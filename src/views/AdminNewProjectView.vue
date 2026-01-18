@@ -17,6 +17,8 @@
             <v-select
               v-model="status"
               :items="projectStatusOptions"
+              item-title="title"
+              item-value="value"
               label="Status"
               variant="outlined"
             />
@@ -45,7 +47,6 @@
               rows="6"
             />
 
-            <p v-if="error" class="text error">{{ error }}</p>
 
             <div class="actions">
               <button type="submit" class="btn btn-primary">Create</button>
@@ -61,7 +62,8 @@
 <script>
 import SectionHeader from "../components/SectionHeader.vue";
 import { useProjectsStore } from "../stores/projects";
-import { slugify, nowStamp } from "../utils/text.js";
+import { slugify } from "../utils/text.js";
+import { useUiStore } from "../stores/ui";
 
 export default {
   name: "AdminNewProjectView",
@@ -69,6 +71,7 @@ export default {
   inject: ["projectTagOptions", "projectStatusOptions"],
   data() {
     return {
+      ui: useUiStore(),
       projectsStore: useProjectsStore(),
 
       title: "",
@@ -77,16 +80,16 @@ export default {
       tags: [],
       shortDescription: "",
       description: "",
-      error: "",
+      //error: "",
       slugTouched: false,
     };
   },
   methods: {
     createProject() {
-      this.error = "";
+      //this.error = "";
 
       if (!this.title || !this.slug || !this.shortDescription || !this.description) {
-        this.error = "Vyplň title, slug, shortDescription a description.";
+        this.ui.toast("Vyplň všetky povinné polia.", "error");
         return;
       }
 
@@ -98,6 +101,8 @@ export default {
         shortDescription: this.shortDescription,
         description: this.description,
       });
+
+      this.ui.toast("Projekt vytvorený", "success");
 
       this.$router.push("/admin/projects");
     },
