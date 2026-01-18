@@ -20,6 +20,9 @@ import AdminProjectsView from "@/views/AdminProjectsView.vue";
 import AdminEditProjectView from "@/views/AdminEditProjectView.vue";
 import AdminNewProjectView from "@/views/AdminNewProjectView.vue";
 
+import NotFoundView from "../views/NotFoundView.vue";
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -44,6 +47,9 @@ const router = createRouter({
     { path: "/admin/projects", name: "admin-project", component: AdminProjectsView},
     { path: "/admin/projects/new", name: "admin-project-new", component: AdminNewProjectView },
     { path: "/admin/projects/:slug/edit", name: "admin-project-edit", component: AdminEditProjectView },
+
+    { path: "/:pathMatch(.*)*", name: "not-found", component: NotFoundView },
+
   
   ],
   scrollBehavior() {
