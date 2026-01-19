@@ -5,7 +5,7 @@
     <div class="surface">
       <v-text-field
         v-model="q"
-        label="Search"
+        label="Hľadať"
         variant="outlined"
         clearable
         hide-details

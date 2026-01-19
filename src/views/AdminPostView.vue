@@ -6,9 +6,9 @@
     />
 
     <div class="admin-actions">
-      <RouterLink class="btn btn-accent" to="/admin/posts/new">+ New post</RouterLink>
-      <RouterLink to="/admin" class="btn btn-primary">Back to admin</RouterLink>
-      <button class="btn btn-ghost" @click="logout">Logout</button>
+      <RouterLink class="btn btn-accent" to="/admin/posts/new">+ Pridať príspevok</RouterLink>
+      <RouterLink to="/admin" class="btn btn-primary">Späť na admin</RouterLink>
+      <button class="btn btn-ghost" @click="logout">Odhlásiť sa</button>
     </div>
 
     <div v-if="postsStore.posts.length === 0" class="stack">
@@ -27,9 +27,9 @@
         </div>
 
         <div class="row-actions">
-            <RouterLink :to="`/blog/${post.slug}?from=admin`" class="btn">View</RouterLink>
-            <RouterLink :to="`/admin/posts/${post.slug}/edit`" class="btn">Edit</RouterLink>
-            <button class="btn btn-danger" @click="openDelete(post.slug)">Delete</button>
+            <RouterLink :to="`/blog/${post.slug}?from=admin`" class="btn">Zobraziť</RouterLink>
+            <RouterLink :to="`/admin/posts/${post.slug}/edit`" class="btn">Upraviť</RouterLink>
+            <button class="btn btn-danger" @click="openDelete(post.slug)">Vymazať</button>
         </div>
       </div>
     </div>

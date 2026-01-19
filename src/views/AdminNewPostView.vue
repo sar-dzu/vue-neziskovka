@@ -6,7 +6,7 @@
     <v-card class="surface" max-width="1100">
       <v-card-text>
         <v-form @submit.prevent="createPost">
-          <v-text-field v-model="title" label="Title" variant="outlined" />
+          <v-text-field v-model="title" label="Nadpis" variant="outlined" />
           <v-text-field
             v-model="slug"
             label="Slug"
@@ -17,17 +17,17 @@
           <v-select
             v-model="tag"
             :items="blogTagOptions"
-            label="Tag"
+            label="Tagy"
             variant="outlined"
           />
 
-          <v-textarea v-model="excerpt" label="Excerpt (short)" variant="outlined" rows="3" />
-          <v-textarea v-model="content" label="Content (full text)" variant="outlined" rows="6" />
+          <v-textarea v-model="excerpt" label="Úryvok" variant="outlined" rows="3" />
+          <v-textarea v-model="content" label="Obsah" variant="outlined" rows="6" />
 
 
           <div class="actions">
-            <button type="submit" class="btn btn-primary">Create</button>
-            <RouterLink to="/admin/posts" class="btn btn-ghost">Cancel</RouterLink>
+            <button type="submit" class="btn btn-primary">Pridať</button>
+            <RouterLink to="/admin/posts" class="btn btn-ghost">Zrušiť</RouterLink>
           </div>
         </v-form>
       </v-card-text>

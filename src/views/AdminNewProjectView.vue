@@ -6,7 +6,7 @@
       <v-card class="surface" width="100%">
         <v-card-text>
           <v-form @submit.prevent="createProject">
-            <v-text-field v-model="title" label="Title" variant="outlined" />
+            <v-text-field v-model="title" label="Nadpis" variant="outlined" />
             <v-text-field
               v-model="slug"
               label="Slug"
@@ -26,7 +26,7 @@
             <v-select
               v-model="tags"
               :items="projectTagOptions"
-              label="Tags"
+              label="Tagy"
               variant="outlined"
               multiple
               chips
@@ -35,22 +35,22 @@
 
             <v-textarea
               v-model="shortDescription"
-              label="Short description"
+              label="Úryvok"
               variant="outlined"
               rows="2"
             />
 
             <v-textarea
               v-model="description"
-              label="Description"
+              label="Opis"
               variant="outlined"
               rows="6"
             />
 
 
             <div class="actions">
-              <button type="submit" class="btn btn-primary">Create</button>
-              <RouterLink to="/admin/projects" class="btn btn-ghost">Cancel</RouterLink>
+              <button type="submit" class="btn btn-primary">Pridať</button>
+              <RouterLink to="/admin/projects" class="btn btn-ghost">Zrušiť</RouterLink>
             </div>
           </v-form>
         </v-card-text>

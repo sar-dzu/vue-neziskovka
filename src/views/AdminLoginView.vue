@@ -1,21 +1,21 @@
 <template>
     
   <v-container>
-    <SectionHeader title="Admin login" subtitle="Prihlásenie pre pridávanie článkov." />
+    <SectionHeader title="Admin login" subtitle="Prihlásenie pre správcu." />
     
     <v-card max-width="760">
       <v-card-text>
         <v-form @submit.prevent="handleLogin">
           <v-text-field
             v-model="username"
-            label="Username"
+            label="Meno používateľa"
             variant="outlined"
             density="comfortable"
           />
 
           <v-text-field
             v-model="password"
-            label="Password"
+            label="Heslo"
             type="password"
             variant="outlined"
             density="comfortable"
@@ -25,7 +25,7 @@
             {{ authStore.loginError }}
           </p>
 
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" class="btn btn-primary">Prihlásiť sa</button>
         </v-form>
       </v-card-text>
     </v-card>

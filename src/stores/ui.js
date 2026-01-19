@@ -15,7 +15,6 @@ export const useUiStore = defineStore("ui", {
       this.snackbar.color = color;
       this.snackbar.timeout = timeout;
 
-      // keď príde toast hneď po sebe, nech sa vždy reálne "re-openne"
       this.snackbar.show = false;
       setTimeout(() => {
         this.snackbar.show = true;

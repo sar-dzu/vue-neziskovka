@@ -6,10 +6,9 @@
       <label class="filter">
         <span class="text">Status</span>
         <select v-model="statusFilter" class="btn btn-accent">
-          <option value="all">Všetky</option>
-          <option value="planned">Plánujeme</option>
-          <option value="ongoing">V procese</option>
-          <option value="finished">Dokončené</option>
+          <option v-for="opt in statusOptions" :key="opt.value" :value="opt.value">
+            {{ opt.title }}
+          </option>
         </select>
       </label>
     </div>
@@ -37,6 +36,7 @@ import { useProjectsStore } from "../stores/projects";
 export default {
   name: "ProjectsView",
   components: { SectionHeader, ProjectCard },
+  inject: ["projectStatusOptions"],
   data() {
     return {
       projectsStore: useProjectsStore(),
@@ -44,6 +44,12 @@ export default {
     };
   },
   computed: {
+    statusOptions() {
+      return [
+        { title: "Všetky", value: "all" },
+        ...(this.projectStatusOptions || []),
+      ];
+    },
     filteredProjects() {
       if (this.statusFilter === "all") return this.projectsStore.projects;
       return this.projectsStore.projects.filter((p) => p.status === this.statusFilter);

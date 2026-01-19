@@ -11,7 +11,7 @@
         <v-form @submit.prevent="save">
           <v-text-field
             v-model="title"
-            label="Title"
+            label="Nadpis"
             variant="outlined"
           />
 
@@ -24,7 +24,7 @@
 
           <v-text-field
             :model-value="date"
-            label="Created at"
+            label="Vytvorené"
             variant="outlined"
             disabled
           />
@@ -32,27 +32,27 @@
           <v-select
             v-model="tag"
             :items="blogTagOptions"
-            label="Tag"
+            label="Tagy"
             variant="outlined"
           />
 
           <v-textarea
             v-model="excerpt"
-            label="Excerpt"
+            label="Úryvok"
             variant="outlined"
             rows="3"
           />
 
           <v-textarea
             v-model="content"
-            label="Content"
+            label="Obsah"
             variant="outlined"
             rows="6"
           />
 
           <div class="actions">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <RouterLink to="/admin/posts" class="btn btn-ghost">Cancel</RouterLink>
+            <button type="submit" class="btn btn-primary">Uložiť</button>
+            <RouterLink to="/admin/posts" class="btn btn-ghost">Zrušiť</RouterLink>
           </div>
         </v-form>
       </v-card-text>

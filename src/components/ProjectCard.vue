@@ -11,26 +11,25 @@
       <span v-for="t in tags" :key="t" class="tag">{{ t }}</span>
     </div>
 
-    <RouterLink :to="to" class="btn btn-ghost">View project</RouterLink>
+    <RouterLink :to="to" class="btn btn-ghost">Zobraziť projekt</RouterLink>
   </article>
 </template>
 
 <script>
 export default {
   name: "ProjectCard",
+  inject: ["projectStatusOptions"],
   props: {
     title: { type: String, required: true },
     shortDescription: { type: String, required: true },
-    status: { type: String, required: true }, // planned | ongoing | finished
+    status: { type: String, required: true },
     tags: { type: Array, default: () => [] },
     to: { type: [String, Object], required: true },
   },
   computed: {
     statusLabel() {
-      if (this.status === "planned") return "Plánujeme";
-      if (this.status === "ongoing") return "V procese";
-      if (this.status === "finished") return "Dokončené";
-      return this.status;
+      const found = (this.projectStatusOptions || []).find((s) => s.value === this.status);
+      return found ? found.title : this.status;
     },
   },
 };

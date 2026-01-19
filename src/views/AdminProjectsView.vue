@@ -3,9 +3,9 @@
     <SectionHeader title="Manage projects" subtitle="Pridaj, uprav alebo vymaž projekty." />
 
     <div class="actions">
-      <RouterLink to="/admin/projects/new" class="btn btn-accent">+ New project</RouterLink>
-      <RouterLink to="/admin" class="btn btn-primary">Back to admin</RouterLink>
-      <button class="btn btn-ghost" @click="logout">Logout</button>
+      <RouterLink to="/admin/projects/new" class="btn btn-accent">+ Pridať projekt</RouterLink>
+      <RouterLink to="/admin" class="btn btn-primary">Späť na admin</RouterLink>
+      <button class="btn btn-ghost" @click="logout">Odhlásiť sa</button>
     </div>
 
     <div v-if="projectsStore.projects.length === 0" class="surface">
@@ -17,13 +17,13 @@
         <div>
           <h3 class="h2" style="margin:0">{{ p.title }}</h3>
           <p class="text" style="margin-top:6px">{{ p.shortDescription }}</p>
-          <p class="text" style="margin-top:6px">Status: <b>{{ p.status }}</b></p>
+          <p class="text" style="margin-top:6px">Status: <b>{{ statusLabel(p.status) }}</b></p>
         </div>
 
         <div class="row-actions">
-          <RouterLink :to="`/projects/${p.slug}?from=admin`" class="btn btn-ghost">View</RouterLink>
-          <RouterLink :to="`/admin/projects/${p.slug}/edit`" class="btn">Edit</RouterLink>
-          <button class="btn btn-danger" @click="openDelete(p.slug)">Delete</button>
+          <RouterLink :to="`/projects/${p.slug}?from=admin`" class="btn btn-ghost">Zobraziť</RouterLink>
+          <RouterLink :to="`/admin/projects/${p.slug}/edit`" class="btn">Upraviť</RouterLink>
+          <button class="btn btn-danger" @click="openDelete(p.slug)">Vymazať</button>
         </div>
       </div>
     </div>
@@ -51,6 +51,7 @@ import { useUiStore } from "../stores/ui";
 export default {
   name: "AdminProjectsView",
   components: { SectionHeader },
+  inject: ["projectStatusOptions"],
   data() {
     return { projectsStore: useProjectsStore(),
       authStore: useAuthStore(),
@@ -72,6 +73,10 @@ export default {
       this.deleteDialog = false;
       this.slugToDelete = null;
       this.ui.toast("Projekt zmazaný", "success");
+    },
+    statusLabel(status) {
+      const found = (this.projectStatusOptions || []).find((s) => s.value === status);
+      return found ? found.title : status;
     },
   },
 };

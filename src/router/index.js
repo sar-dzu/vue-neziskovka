@@ -1,26 +1,29 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAuthStore } from "../stores/auth";
-import HomeView from "../views/HomeView.vue";
-import AboutView from "../views/AboutView.vue";
 
-import BlogView from "../views/BlogView.vue";
-import ProjectsView from "../views/ProjectsView.vue";
-import PeopleView from "../views/PeopleView.vue";
+const HomeView = () => import("../views/HomeView.vue");
+const AboutView = () => import("../views/AboutView.vue");
 
-import BlogDetailView from "../views/BlogDetailView.vue";
-import ProjectDetailView from "../views/ProjectDetailView.vue";
+const BlogView = () => import("../views/BlogView.vue");
+const BlogDetailView = () => import("../views/BlogDetailView.vue");
 
+const ProjectsView = () => import("../views/ProjectsView.vue");
+const ProjectDetailView = () => import("../views/ProjectDetailView.vue");
 
-import AdminView from "../views/AdminView.vue";
-import AdminLoginView from "../views/AdminLoginView.vue";
-import AdminPostView from "../views/AdminPostView.vue";
-import AdminNewPostView from "../views/AdminNewPostView.vue";
-import AdminEditPostView from "../views/AdminEditPostView.vue";
-import AdminProjectsView from "@/views/AdminProjectsView.vue";
-import AdminEditProjectView from "@/views/AdminEditProjectView.vue";
-import AdminNewProjectView from "@/views/AdminNewProjectView.vue";
+const PeopleView = () => import("../views/PeopleView.vue");
 
-import NotFoundView from "../views/NotFoundView.vue";
+const AdminView = () => import("../views/AdminView.vue");
+const AdminLoginView = () => import("../views/AdminLoginView.vue");
+
+const AdminPostView = () => import("../views/AdminPostView.vue");
+const AdminNewPostView = () => import("../views/AdminNewPostView.vue");
+const AdminEditPostView = () => import("../views/AdminEditPostView.vue");
+
+const AdminProjectsView = () => import("../views/AdminProjectsView.vue");
+const AdminNewProjectView = () => import("../views/AdminNewProjectView.vue");
+const AdminEditProjectView = () => import("../views/AdminEditProjectView.vue");
+
+const NotFoundView = () => import("../views/NotFoundView.vue");
 
 
 const router = createRouter({

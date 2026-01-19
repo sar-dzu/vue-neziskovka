@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="footer-inner">
-      <p class="text small">© {{ year }} Neziskovka. Všetky práva vyhradené.</p>
+      <p class="text small">© {{ year }} Neziskovka Mestáreň. Všetky práva vyhradené.</p>
 
       <div class="links">
         <RouterLink to="/about" class="footer-link">O nás</RouterLink>
