@@ -1,6 +1,6 @@
 <template>
   <main class="container stack">
-    <SectionHeader title="Manage projects" subtitle="Pridaj, uprav alebo vymaž projekty." />
+    <SectionHeader title="Admin – projekty" subtitle="Pridaj, uprav alebo vymaž projekty." />
 
     <div class="actions">
       <RouterLink to="/admin/projects/new" class="btn btn-accent">+ Pridať projekt</RouterLink>

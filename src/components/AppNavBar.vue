@@ -3,7 +3,7 @@
     <div class="navbar-inner">
       <RouterLink to="/" class="brand">Mestáreň</RouterLink>
 
-      <!-- desktop links -->
+      <!-- desktop -->
       <nav class="nav-links desktop">
         <RouterLink to="/" class="nav-link">Domov</RouterLink>
         <RouterLink to="/projects" class="nav-link">Projekty</RouterLink>
@@ -76,6 +76,7 @@ export default {
   color: white;
   font-weight: 900;
   letter-spacing: -0.02em;
+  font-size: large;
 }
 
 .nav-links {

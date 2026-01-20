@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <main class="container-wide stack">
-      <SectionHeader title="New project" subtitle="Pridaj nový projekt." />
+      <SectionHeader title="Nový projekt" subtitle="Pridaj nový projekt." />
 
       <v-card class="surface" width="100%">
         <v-card-text>

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <main class="container">
-    <SectionHeader title="New blog post" subtitle="Pridaj nový článok do blogu." />
+    <SectionHeader title="Nový príspevok" subtitle="Pridaj nový článok do blogu." />
 
     <v-card class="surface" max-width="1100">
       <v-card-text>

@@ -1,7 +1,7 @@
 <template>
   <main class="container stack">
     <div class="unite">
-    <SectionHeader title="Projects" subtitle="Dlhodobé projekty organizácie." />
+    <SectionHeader title="Projekty" subtitle="Dlhodobé projekty organizácie." />
     <div class="filter-bar">
       <label class="filter">
         <span class="text">Status</span>

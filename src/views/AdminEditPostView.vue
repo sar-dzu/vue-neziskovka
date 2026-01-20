@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <main class="container">
-    <SectionHeader title="Edit blog post" subtitle="Uprav existujúci článok." />
+    <SectionHeader title="Upraviť príspevok blogu" subtitle="Uprav existujúci článok." />
 
     <p v-if="!post" class="text">
       Článok sa nenašiel.

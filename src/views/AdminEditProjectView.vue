@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <main class="container-wide stack">
-      <SectionHeader title="Edit project" subtitle="Uprav existujúci projekt." />
+      <SectionHeader title="Upraviť projekt" subtitle="Uprav existujúci projekt." />
 
       <p v-if="!project" class="text">Projekt sa nenašiel.</p>
 
