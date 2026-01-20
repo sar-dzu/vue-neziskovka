@@ -19,14 +19,14 @@ export const usePeopleStore = defineStore("peopleStore", {
         image: new URL("../assets/people/person2.png", import.meta.url).href,
       },
       {
-        id: 1,
+        id: 3,
         name: "Meno Priezvisko",
         role: "HR",
         bio: "Krátky popis, 1–2 vety o človeku.",
         image: new URL("../assets/people/person3.png", import.meta.url).href
       },
       {
-        id: 1,
+        id: 4,
         name: "Meno Priezvisko",
         role: "Admin",
         bio: "Krátky popis, 1–2 vety o človeku.",

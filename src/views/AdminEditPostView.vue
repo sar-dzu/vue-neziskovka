@@ -121,7 +121,6 @@ export default {
       });
 
       this.ui.toast("Článok uložený", "success");
-      this.$router.push("/admin/posts");
 
       this.$router.push("/admin/posts");
     },

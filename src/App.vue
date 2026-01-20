@@ -34,7 +34,7 @@ export default {
     }
   },
   provide() {
-      return {
+    return {
       projectTagOptions: ["Vzdelávanie", "Komunita", "Pomoc", "Výskum", "Mládež", "Médiá"],
       projectStatusOptions: [
         { title: "Plánujeme", value: "planned" },

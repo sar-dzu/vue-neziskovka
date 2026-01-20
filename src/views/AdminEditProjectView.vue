@@ -20,6 +20,8 @@
             <v-select
               v-model="status"
               :items="projectStatusOptions"
+              item-title="title"
+              item-value="value"
               label="Status"
               variant="outlined"
             />
@@ -119,7 +121,6 @@ export default {
       });
 
       this.ui.toast("Projekt uložený", "success");
-      this.$router.push("/admin/posts");
 
       this.$router.push("/admin/projects");
     },

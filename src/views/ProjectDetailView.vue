@@ -1,6 +1,6 @@
 <template>
   <main class="container stack">
-    <RouterLink :to="backTo" class="btn btn-ghost">← Back to projects</RouterLink>
+    <RouterLink :to="backTo" class="btn btn-ghost">← Späť na projekty</RouterLink>
 
     <p v-if="!project" class="text">Projekt sa nenašiel.</p>
 

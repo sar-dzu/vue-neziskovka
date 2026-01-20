@@ -14,7 +14,7 @@
       Článok sa nenašiel.
     </p>
 
-    <RouterLink :to="backTo" class="back">← Späť</RouterLink>
+    <RouterLink :to="backTo" class="btn btn-ghost">← Späť</RouterLink>
   </main>
 </template>
 
@@ -44,10 +44,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.back {
-  display: inline-block;
-  margin-top: 16px;
-  font-weight: 700;
-}
-</style>

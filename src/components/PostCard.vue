@@ -1,5 +1,5 @@
 <template>
-    <article class="surface">
+    <article class="surface card">
         <div class="meta">
             <span class="date">{{ date }}</span>
             <span v-if="tag" class="tag">{{ tag }}</span>
@@ -59,14 +59,4 @@ export default {
   opacity: 0.95;
 }
 
-.read-more {
-  display: inline-block;
-  font-weight: 700;
-  opacity: 0.9;
-}
-
-.read-more:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
 </style>

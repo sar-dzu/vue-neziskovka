@@ -6,7 +6,7 @@
       <div class="links">
         <RouterLink to="/about" class="footer-link">O nás</RouterLink>
         <RouterLink to="/blog" class="footer-link">Blog</RouterLink>
-        <RouterLink to="/projects" class="footer-link">Projects</RouterLink>
+        <RouterLink to="/projects" class="footer-link">Projekty</RouterLink>
       </div>
     </div>
   </footer>

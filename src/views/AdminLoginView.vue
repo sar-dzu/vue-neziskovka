@@ -9,6 +9,7 @@
           <v-text-field
             v-model="username"
             label="Meno používateľa"
+            autocomplete="username"
             variant="outlined"
             density="comfortable"
           />
@@ -17,6 +18,7 @@
             v-model="password"
             label="Heslo"
             type="password"
+            autocomplete="current-password"
             variant="outlined"
             density="comfortable"
           />
